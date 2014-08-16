@@ -45,20 +45,27 @@ FileStructure.prototype = {
         }
     },
 
-    goToCurrent: function() {
-        var currentLocation = this.tree["root"];
-
-        for ( var i = 1; i < this.navigation.length; i++ ) {
-            currentLocation = currentLocation[this.navigation[i]];
-        }
-        return currentLocation
-    },
-
     currentPath: function() {
         return this.navigation.join('/');
     },
 
     goToHome: function() {
         this.navigation = ["root", "Users", this.user];
+    },
+
+    createDirectory: function( newDirectory ) {
+        var currentLocation = this.goToCurrent();
+
+        currentLocation[newDirectory] = {};
+    },
+
+    goToCurrent: function() {
+        var currentLocation = this.tree["root"];
+
+        for ( var i = 1; i < this.navigation.length; i++ ) {
+            currentLocation = currentLocation[this.navigation[i]];
+        }
+
+        return currentLocation
     }
 }
