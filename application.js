@@ -1,7 +1,7 @@
 $(document).ready(function() {
     var parser = new CmdParser();
-    parser.cd()
-    console.log(parser.fileStructure.navigation)
+    parser.mkdir("../Clark/Applications/Stuff")
+    debugger
 });
 
 Array.prototype.last = function(){
