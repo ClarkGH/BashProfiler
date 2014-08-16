@@ -23,7 +23,6 @@ CmdParser.prototype = {
             }
         }
     },
-
     pwd: function() {
         return this.fileStructure.currentPath();
     },
