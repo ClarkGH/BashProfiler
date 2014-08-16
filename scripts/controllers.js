@@ -1,2 +1,4 @@
-function HelloController($scope) { $scope.greeting = { text: 'Hello' };
+function HelloController($scope) {
+  $scope.greeting = { text: 'Hello' };
 }
+
