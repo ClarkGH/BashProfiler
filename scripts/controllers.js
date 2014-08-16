@@ -1,4 +1,4 @@
 function HelloController($scope) {
-  $scope.greeting = { text: 'Hello' };
+  $scope.userInput = { text: 'Hello' };
 }
 
