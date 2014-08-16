@@ -2,7 +2,7 @@ function FileStructure() {
     this.navigation = ["root", "Users", "Connor"];
     this.tree = {
         "root": {
-            "Applications":{},
+            "Applications":["Chrome", "Word", "Sublime", "uTorrent"],
             "Library":{},
             "System":{},
             "Users":{
@@ -43,6 +43,7 @@ FileStructure.prototype = {
             return false;
         }
     },
+
     goToCurrent: function() {
         var currentLocation = this.tree["root"];
 
@@ -50,5 +51,9 @@ FileStructure.prototype = {
             currentLocation = currentLocation[this.navigation[i]];
         }
         return currentLocation
+    },
+
+    currentPath: function(){
+        return this.navigation.join('/');
     }
 }

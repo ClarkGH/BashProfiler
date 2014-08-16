@@ -4,7 +4,7 @@ function CmdParser(){
 }
 
 CmdParser.prototype = {
-    cd: function( navString ){
+    cd: function( navString ) {
         var navArray = navString.split("/");
 
         for( var i = 0; i < navArray.length; i++ ) {
@@ -16,5 +16,9 @@ CmdParser.prototype = {
                 this.fileStructure.descend(navArray[i])
             }
         }
+    },
+
+    pwd: function() {
+        return this.fileStructure.currentPath();
     }
 }
