@@ -1,4 +1,4 @@
-function FileStructure(){
+function FileStructure() {
     this.navigation = ["root", "Users", "Connor"];
     this.tree = {
         "root": {
@@ -31,41 +31,24 @@ function FileStructure(){
 
 FileStructure.prototype = {
     ascend: function() {
-        this.navigation.pop() if this.navigation.length > 1;
+        if ( this.navigation.length > 1 ) this.navigation.pop();
     },
 
     descend: function( file ) {
-        currentLocation = this.goToCurrent();
-        if(currentLocation[file]){
+        var currentLocation = this.goToCurrent();
+
+        if ( currentLocation[file] ) {
             this.navigation.push( file );
-        }else{
+        } else {
             return false;
         }
     },
-    goToCurrent: function(){
-        var currentLocation = this.tree["root"]
-        for(var i = 0; i < this.navigation.length; i++){
+    goToCurrent: function() {
+        var currentLocation = this.tree["root"];
+
+        for ( var i = 1; i < this.navigation.length; i++ ) {
             currentLocation = currentLocation[this.navigation[i]];
         }
-    }
-}
-
-function CmdParser(){
-    this.fileStructure = new FileStructure();
-    this.history = [];
-}
-
-CmdParser.prototype = {
-    cd: function(navString){
-        navArray = navString.split("/");
-        for(var i = 0; i < navArray.length; i++){
-            if(navArray[i] === ".."){
-                this.fileStructure.ascend();
-            }else if(navArray[i] === "."){
-                continue
-            }else{
-                this.fileStructure.descend(navArray[i])
-            }
-        }
+        return currentLocation
     }
 }
