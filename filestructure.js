@@ -1,8 +1,9 @@
-function FileStructure(){
+function FileStructure() {
     this.navigation = ["root", "Users", "Connor"];
+    this.user = "Connor"
     this.tree = {
         "root": {
-            "Applications":{},
+            "Applications":["Chrome", "Word", "Sublime", "uTorrent"],
             "Library":{},
             "System":{},
             "Users":{
@@ -31,41 +32,33 @@ function FileStructure(){
 
 FileStructure.prototype = {
     ascend: function() {
-        this.navigation.pop() if this.navigation.length > 1;
+        if ( this.navigation.length > 1 ) this.navigation.pop();
     },
 
     descend: function( file ) {
-        currentLocation = this.goToCurrent();
-        if(currentLocation[file]){
+        var currentLocation = this.goToCurrent();
+
+        if ( currentLocation[file] ) {
             this.navigation.push( file );
-        }else{
+        } else {
             return false;
         }
     },
-    goToCurrent: function(){
-        var currentLocation = this.tree["root"]
-        for(var i = 0; i < this.navigation.length; i++){
+
+    goToCurrent: function() {
+        var currentLocation = this.tree["root"];
+
+        for ( var i = 1; i < this.navigation.length; i++ ) {
             currentLocation = currentLocation[this.navigation[i]];
         }
-    }
-}
+        return currentLocation
+    },
 
-function CmdParser(){
-    this.fileStructure = new FileStructure();
-    this.history = [];
-}
+    currentPath: function() {
+        return this.navigation.join('/');
+    },
 
-CmdParser.prototype = {
-    cd: function(navString){
-        navArray = navString.split("/");
-        for(var i = 0; i < navArray.length; i++){
-            if(navArray[i] === ".."){
-                this.fileStructure.ascend();
-            }else if(navArray[i] === "."){
-                continue
-            }else{
-                this.fileStructure.descend(navArray[i])
-            }
-        }
+    goToHome: function() {
+        this.navigation = ["root", "Users", this.user];
     }
 }
