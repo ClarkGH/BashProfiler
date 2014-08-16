@@ -26,5 +26,9 @@ CmdParser.prototype = {
 
     pwd: function() {
         return this.fileStructure.currentPath();
+    },
+    ls: function() {
+        var currentLocProperties = Object.keys(this.fileStructure.goToCurrent());
+        return currentLocProperties;
     }
 }
