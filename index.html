@@ -1,8 +1,22 @@
 <!DOCTYPE html>
+<html ng-app>
+
 <head>
   <link rel="stylesheet" type="text/css" href="application.css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="filestructure.js"></script>
-  <script type="text/javascript" src="parser.js"></script>
-  <script type="text/javascript" src="application.js"></script>
+  <script src="scripts/angular.min.js"></script>
+  <script src="scripts/controllers.js"></script>
+  <script type="text/javascript" src="scripts/filestructure.js"></script>
+  <script type="text/javascript" src="scripts/parser.js"></script>
+  <script type="text/javascript" src="scripts/application.js"></script>
 </head>
+
+<body>
+  <div ng-controller='HelloController'>
+    <input ng-model='userInput.text'>
+    <p>{{userInput.text}}</p>
+  </div>
+</body>
+
+</html>
+
