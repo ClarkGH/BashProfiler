@@ -26,5 +26,15 @@ CmdParser.prototype = {
 
     pwd: function() {
         return this.fileStructure.currentPath();
+    },
+
+    mkdir: function( filePath ) {
+        var pathArray = filePath.split("/")
+        var newDirectory = pathArray.pop()
+        var currentLocation = this.fileStructure.navigation.slice(0);
+
+        this.cd( pathArray.join("/") );
+        this.fileStructure.createDirectory(newDirectory);
+        this.fileStructure.navigation = currentLocation;
     }
 }
