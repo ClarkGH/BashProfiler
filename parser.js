@@ -5,15 +5,21 @@ function CmdParser(){
 
 CmdParser.prototype = {
     cd: function( navString ) {
-        var navArray = navString.split("/");
+        var navArray;
 
-        for( var i = 0; i < navArray.length; i++ ) {
-            if ( navArray[i] === ".." ) {
-                this.fileStructure.ascend();
-            } else if ( navArray[i] === "." ) {
-                continue
-            } else {
-                this.fileStructure.descend(navArray[i])
+        if ( navString === "" || navString === undefined ) {
+            this.fileStructure.goToRoot();
+        } else {
+            navArray = navString.split("/");
+
+            for( var i = 0; i < navArray.length; i++ ) {
+                if ( navArray[i] === ".." ) {
+                    this.fileStructure.ascend();
+                } else if ( navArray[i] === "." ) {
+                    continue
+                } else {
+                    this.fileStructure.descend(navArray[i])
+                }
             }
         }
     },
