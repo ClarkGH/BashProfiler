@@ -1,4 +1,4 @@
-function HelloController($scope) {
+function TerminalController($scope) {
   $scope.userInput = { text: 'Hello' };
 }
 
