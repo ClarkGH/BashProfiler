@@ -28,6 +28,19 @@ CmdParser.prototype = {
         return this.fileStructure.currentPath();
     },
 
+    ls: function( filePath ) {
+        if( filePath ){
+            var currentLocation = this.fileStructure.navigation.slice(0);
+            this.cd( filePath );
+        }
+        var currentLocProperties = Object.keys(this.fileStructure.goToCurrent());
+        
+        if( filePath ){
+            this.fileStructure.navigation = currentLocation;
+        }
+        return currentLocProperties;
+    },
+
     mkdir: function( filePath ) {
         var pathArray = filePath.split("/")
         var newDirectory = pathArray.pop()
