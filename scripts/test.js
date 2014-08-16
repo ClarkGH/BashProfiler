@@ -1,1 +1,0 @@
-function testNode() {return "Node is working"}; testNode();
