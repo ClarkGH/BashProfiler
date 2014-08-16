@@ -8,7 +8,7 @@ CmdParser.prototype = {
         var navArray;
 
         if ( navString === "" || navString === undefined ) {
-            this.fileStructure.goToRoot();
+            this.fileStructure.goToHome();
         } else {
             navArray = navString.split("/");
 
