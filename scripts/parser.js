@@ -8,7 +8,7 @@ CmdParser.prototype = {
         var navArray;
 
         if ( navString === "" || navString === undefined ) {
-            this.fileStructure.goToHome();
+            this.fileStructure.goTokHome();
         } else {
             navArray = navString.split("/");
 
@@ -29,15 +29,16 @@ CmdParser.prototype = {
     },
 
     ls: function( filePath ) {
-        if( filePath ){
+        if ( filePath ){
             var currentLocation = this.fileStructure.navigation.slice(0);
             this.cd( filePath );
         }
         var currentLocProperties = Object.keys(this.fileStructure.goToCurrent());
-        
-        if( filePath ){
+
+        if ( filePath ){
             this.fileStructure.navigation = currentLocation;
         }
+
         return currentLocProperties;
     },
 
