@@ -34,5 +34,33 @@ function ParserController( $scope ) {
                 }
             }
         }
+    },
+
+    $scope.pwd = function() {
+        return this.fileStructure.currentPath();
+    },
+
+    $scope.ls = function( filePath ) {
+        if ( filePath ){
+            var currentLocation = this.fileStructure.navigation.slice(0);
+            this.cd( filePath );
+        }
+        var currentLocProperties = Object.keys(this.fileStructure.goToCurrent());
+
+        if ( filePath ){
+            this.fileStructure.navigation = currentLocation;
+        }
+
+        return currentLocProperties;
+    },
+
+    $scope.mkdir = function( filePath ) {
+        var pathArray = filePath.split("/")
+        var newDirectory = pathArray.pop()
+        var currentLocation = $scope.fileStructure.navigation.slice(0);
+
+        $scope.cd( pathArray.join("/") );
+        $scope.fileStructure.createDirectory(newDirectory);
+        $scope.fileStructure.navigation = currentLocation;
     }
 }
