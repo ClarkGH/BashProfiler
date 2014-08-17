@@ -8,7 +8,7 @@ CmdParser.prototype = {
         var navArray;
 
         if ( navString === "" || navString === undefined ) {
-            this.fileStructure.goToHome();
+            this.fileStructure.goTokHome();
         } else {
             navArray = navString.split("/");
 
@@ -34,7 +34,7 @@ CmdParser.prototype = {
             this.cd( filePath );
         }
         var currentLocProperties = Object.keys(this.fileStructure.goToCurrent());
-        
+
         if( filePath ){
             this.fileStructure.navigation = currentLocation;
         }

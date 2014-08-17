@@ -12,6 +12,9 @@
   </head>
 
   <body>
+    <div ng-controller="ParserController">
+      <input ng-keypress="parseInput()" type="text">
+    </div>
     <div ng-controller='HelloController'>
       <input ng-model='userInput.text'>
       <p>{{userInput.text}}</p>
