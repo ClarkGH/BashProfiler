@@ -2,7 +2,7 @@ function CmdParser(){
     this.fileStructure = new FileStructure();
     this.history = [];
 }
-
+// testing
 CmdParser.prototype = {
     cd: function( navString ) {
         var navArray;
