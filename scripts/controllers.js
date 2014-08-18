@@ -22,27 +22,35 @@ function ParserController( $scope ) {
     $scope.parseInput = function(){
 
         if ( event.charCode === 13 ) {
+            $scope.terminalReturn = ""
             var stringArray = $scope.textInput.split(" ")
             var command = stringArray.shift()
 
             $scope.commandHistory.push($scope.textInput);
 
+
+
+            if ( Object.keys(this).indexOf( command ) != -1) {
+                $scope[command]( stringArray.join() )
+            }
+
+            var terminalHistoryEntry = '<div>' + document.getElementById('pre-cursor').innerHTML + $scope.textInput + '<div>' + $scope.terminalReturn + '</div></div>'
+
+
             if ( $('#terminal-history').children().length < 14 ) {
-                $('#terminal-history').append('<div>' + document.getElementById('pre-cursor').innerHTML + $scope.textInput + '</div>')
+                $('#terminal-history').append(terminalHistoryEntry)
             } else {
                 $('#terminal-history').children()[0].remove()
-                $('#terminal-history').append('<div>' + document.getElementById('pre-cursor').innerHTML + $scope.textInput + '</div>')
+                $('#terminal-history').append(terminalHistoryEntry)
             }
 
             event.target.value = ''
             $scope.textInput = ''
 
-            if ( Object.keys(this).indexOf( command ) != -1) {
-                $scope[command]( stringArray.join() )
-            }
         } else {
             $scope.textInput += String.fromCharCode(event.charCode);
         }
+
     },
 
     $scope.cd = function( navString ) {
@@ -61,7 +69,6 @@ function ParserController( $scope ) {
                     continue
                 } else {
                     if ( ! $scope.fileStructure.descend(navArray[i]) ) {
-                        // debugger
                         $scope.fileStructure.navigation = startingLocation;
                         return
                     }
@@ -81,15 +88,16 @@ function ParserController( $scope ) {
     $scope.ls = function( filePath ) {
         if ( filePath ){
             var currentLocation = $scope.fileStructure.navigation.slice(0);
-            this.cd( filePath );
+            $scope.cd( filePath );
         }
-        var currentLocProperties = Object.keys($scope.fileStructure.goToCurrent());
+
+        var currentLocProperties = Object.keys($scope.fileStructure.goToCurrent()).join(' ');
 
         if ( filePath ){
             $scope.fileStructure.navigation = currentLocation;
         }
 
-        return currentLocProperties;
+        $scope.terminalReturn = currentLocProperties;
     },
 
     $scope.mkdir = function( filePath ) {
