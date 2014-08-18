@@ -5,24 +5,39 @@ function HelloController($scope) {
 function ParserController( $scope ) {
     $scope.fileStructure = new FileStructure(),
     $scope.history = [],
+    $scope.textInput = "",
+
+    $scope.specialInput = function(){
+        if ( event.which === 8 ) {
+            $scope.textInput = $scope.textInput.substr(0, $scope.textInput.length - 1)
+        } else if ( event.which === 38 ) {
+            var lastCommand = $scope.history.pop();
+            $scope.history.unshift(lastCommand);
+            $scope.textInput = lastCommand;
+            // debugger
+        }
+    },
 
     $scope.parseInput = function(){
-        if ( event.charCode == "13" ) {
-            var stringArray = event.target.value.split(" ")
+        if ( event.charCode === 13 ) {
+            var stringArray = $scope.textInput.split(" ")
             var command = stringArray.shift()
 
-            $scope.history.push(command);
+            $scope.history.push($scope.textInput);
             event.target.value = ''
+            $scope.textInput = ''
 
             if ( Object.keys(this).indexOf( command ) != -1) {
                 $scope[command]( stringArray.join() )
             }
+        } else {
+            $scope.textInput += String.fromCharCode(event.charCode);
         }
     },
 
     $scope.cd = function( navString ) {
         var navArray;
-        if ( navString === "" || navString === undefined ) {
+        if ( navString ) {
             this.fileStructure.goToHome();
         } else {
             navArray = navString.split("/");
