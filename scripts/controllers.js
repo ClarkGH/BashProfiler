@@ -4,15 +4,18 @@ function HelloController($scope) {
 
 function ParserController( $scope ) {
     $scope.fileStructure = new FileStructure(),
+    $scope.history = [],
 
     $scope.parseInput = function(){
-        if (event.charCode == "13"){
+        if ( event.charCode == "13" ) {
             var stringArray = event.target.value.split(" ")
             var command = stringArray.shift()
+
+            $scope.history.push(command);
             event.target.value = ''
 
             if ( Object.keys(this).indexOf( command ) != -1) {
-                $scope[command](stringArray.join())
+                $scope[command]( stringArray.join() )
             }
         }
     },

@@ -13,14 +13,24 @@
   </head>
 
   <body>
-    <div ng-controller="ParserController">
-      <input ng-keypress="parseInput()" type="text">
-      <p>{{pwd()}}</p>
-      <p>{{ls()}}</p>
-    </div>
-    <div ng-controller='HelloController'>
-      <input ng-model='userInput.text'>
-      <p>{{userInput.text}}</p>
+    <div id="terminal">
+      <div id="terminal-history">
+      </div>
+      <div id="terminal-input" ng-controller="ParserController">
+        <input ng-keypress="parseInput()" type="text" hidden>
+        <div>
+          <span id="current-dir">{{fileStructure.navigation.last()}}</span>
+          <span id="divider">|</span>
+          <span id="l-bracket">[</span>
+          <span id="git-branch">master</span>
+          <span id="local-branch-status"> * </span>
+          <span id="remote-branch-status"> + </span>
+          <span id="r-bracket">]</span>
+          <span id="caret">&#10233;</span>
+          <span id="cursor">B</span>
+        </div>
+        <div id="terminal-return">Output Here</div>
+      </div>
     </div>
   </body>
 
