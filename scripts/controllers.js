@@ -1,6 +1,7 @@
-function HelloController($scope) {
-  $scope.userInput = { text: 'Hello' };
-}
+var terminalEmulator = angular.module( 'terminalEmulator', [] )
+
+terminalEmulator.controller( 'ParserController', [ '$scope', ParserController ] );
+
 
 function ParserController( $scope ) {
     $scope.fileStructure = new FileStructure(),
@@ -19,6 +20,7 @@ function ParserController( $scope ) {
     },
 
     $scope.parseInput = function(){
+
         if ( event.charCode === 13 ) {
             var stringArray = $scope.textInput.split(" ")
             var command = stringArray.shift()
@@ -45,39 +47,46 @@ function ParserController( $scope ) {
 
     $scope.cd = function( navString ) {
         var navArray;
+        ;
 
         if ( navString  ) {
 
             navArray = navString.split("/");
 
+            var startingLocation = $scope.fileStructure.currentLocation();
             for( var i = 0; i < navArray.length; i++ ) {
                 if ( navArray[i] === ".." ) {
-                    this.fileStructure.ascend();
+                    $scope.fileStructure.ascend();
                 } else if ( navArray[i] === "." ) {
                     continue
                 } else {
-                    this.fileStructure.descend(navArray[i])
+                    if ( ! $scope.fileStructure.descend(navArray[i]) ) {
+                        // debugger
+                        $scope.fileStructure.navigation = startingLocation;
+                        return
+                    }
                 }
             }
 
         } else {
-            this.fileStructure.goToHome();
+            $scope.fileStructure.goToHome();
         }
+
     },
 
     $scope.pwd = function() {
-        $scope.terminalReturn = this.fileStructure.currentPath();
+        $scope.terminalReturn = $scope.fileStructure.currentPath();
     },
 
     $scope.ls = function( filePath ) {
         if ( filePath ){
-            var currentLocation = this.fileStructure.navigation.slice(0);
+            var currentLocation = $scope.fileStructure.navigation.slice(0);
             this.cd( filePath );
         }
-        var currentLocProperties = Object.keys(this.fileStructure.goToCurrent());
+        var currentLocProperties = Object.keys($scope.fileStructure.goToCurrent());
 
         if ( filePath ){
-            this.fileStructure.navigation = currentLocation;
+            $scope.fileStructure.navigation = currentLocation;
         }
 
         return currentLocProperties;

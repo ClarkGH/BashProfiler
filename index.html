@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html>
 
   <head>
     <link rel="stylesheet" type="text/css" href="stylesheets/application.css">
@@ -13,10 +13,9 @@
     <script type="text/javascript" src="scripts/application.js"></script>
   </head>
 
-  <body>
+  <body ng-app="terminalEmulator">
     <div id="terminal" ng-keydown="specialInput()" ng-keypress="parseInput()" ng-controller="ParserController" tabindex="0">
       <div id="terminal-history">
-
       </div>
       <div id="terminal-input-line" >
         <div id="pre-cursor">
@@ -33,7 +32,7 @@
           <span id="input">{{textInput}}<span id="cursor">B</span></span>
         </div>
         </div>
-        <div id="terminal-return">{{terminalReturn}}</div>
+        <!-- <div id="terminal-return">{{terminalReturn}}</div> -->
       </div>
     </div>
   </body>
