@@ -37,9 +37,9 @@ function ParserController( $scope ) {
 
     $scope.cd = function( navString ) {
         var navArray;
-        if ( navString ) {
-            this.fileStructure.goToHome();
-        } else {
+
+        if ( navString  ) {
+
             navArray = navString.split("/");
 
             for( var i = 0; i < navArray.length; i++ ) {
@@ -51,6 +51,9 @@ function ParserController( $scope ) {
                     this.fileStructure.descend(navArray[i])
                 }
             }
+
+        } else {
+            this.fileStructure.goToHome();
         }
     },
 
