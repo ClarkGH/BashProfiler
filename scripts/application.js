@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+    $('#terminal').focus();
 });
 
 Array.prototype.last = function(){

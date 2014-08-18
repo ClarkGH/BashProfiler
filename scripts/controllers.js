@@ -4,17 +4,17 @@ function HelloController($scope) {
 
 function ParserController( $scope ) {
     $scope.fileStructure = new FileStructure(),
-    $scope.history = [],
+    $scope.commandHistory = [],
     $scope.textInput = "",
+    $scope.terminalReturn = "",
 
     $scope.specialInput = function(){
         if ( event.which === 8 ) {
             $scope.textInput = $scope.textInput.substr(0, $scope.textInput.length - 1)
         } else if ( event.which === 38 ) {
-            var lastCommand = $scope.history.pop();
-            $scope.history.unshift(lastCommand);
+            var lastCommand = $scope.commandHistory.pop();
+            $scope.commandHistory.unshift(lastCommand);
             $scope.textInput = lastCommand;
-            // debugger
         }
     },
 
@@ -23,7 +23,15 @@ function ParserController( $scope ) {
             var stringArray = $scope.textInput.split(" ")
             var command = stringArray.shift()
 
-            $scope.history.push($scope.textInput);
+            $scope.commandHistory.push($scope.textInput);
+
+            if ( $('#terminal-history').children().length < 14 ) {
+                $('#terminal-history').append('<div>' + document.getElementById('pre-cursor').innerHTML + $scope.textInput + '</div>')
+            } else {
+                $('#terminal-history').children()[0].remove()
+                $('#terminal-history').append('<div>' + document.getElementById('pre-cursor').innerHTML + $scope.textInput + '</div>')
+            }
+
             event.target.value = ''
             $scope.textInput = ''
 
@@ -58,7 +66,7 @@ function ParserController( $scope ) {
     },
 
     $scope.pwd = function() {
-        return this.fileStructure.currentPath();
+        $scope.terminalReturn = this.fileStructure.currentPath();
     },
 
     $scope.ls = function( filePath ) {
@@ -83,5 +91,9 @@ function ParserController( $scope ) {
         $scope.cd( pathArray.join("/") );
         $scope.fileStructure.createDirectory(newDirectory);
         $scope.fileStructure.navigation = currentLocation;
+    },
+
+    $scope.clear = function(){
+        document.getElementById('terminal-history').innerHTML = '';
     }
 }
