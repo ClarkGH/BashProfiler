@@ -40,6 +40,7 @@ FileStructure.prototype = {
 
         if ( currentLocation[file] ) {
             this.navigation.push( file );
+            return true;
         } else {
             return false;
         }

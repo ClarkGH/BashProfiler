@@ -61,7 +61,7 @@ function ParserController( $scope ) {
 
             navArray = navString.split("/");
 
-            var startingLocation = $scope.fileStructure.currentLocation();
+            var startingLocation = $scope.fileStructure.currentPath();
             for( var i = 0; i < navArray.length; i++ ) {
                 if ( navArray[i] === ".." ) {
                     $scope.fileStructure.ascend();
@@ -69,7 +69,7 @@ function ParserController( $scope ) {
                     continue
                 } else {
                     if ( ! $scope.fileStructure.descend(navArray[i]) ) {
-                        $scope.fileStructure.navigation = startingLocation;
+                        $scope.fileStructure.navigation = startingLocation.split('/');
                         return
                     }
                 }
