@@ -61,7 +61,7 @@ function FileStructure () {
             navigation = ["root", "Users", user];
         },
 
-        createDir: function(){
+        createDir: function( newDirectory ){
             var currentLocation = this.goToCurrent();
 
             currentLocation[newDirectory] = {};

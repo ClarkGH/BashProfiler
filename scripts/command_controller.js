@@ -95,11 +95,11 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
     $scope.mkdir = function( filePath ) {
         var pathArray = filePath.split("/")
         var newDirectory = pathArray.pop()
-        var currentLocation = FileStructure.navigation.slice(0);
+        var currentLocation = FileStructure.navigation().join('/');
 
         $scope.cd( pathArray.join("/") );
-        FileStructure.createDirectory(newDirectory);
-        FileStructure.navigation = currentLocation;
+        FileStructure.createDir( newDirectory );
+        $scope.cd( currentLocation );
     },
 
     $scope.clear = function(){
