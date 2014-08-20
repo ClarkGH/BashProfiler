@@ -28,19 +28,19 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
     },
 
     $scope.parseInput = function(){
-
-        var stringArray = this.textInputField.split(" ")
-        var command = stringArray.shift()
+        var returnValue;
+        var stringArray = this.textInputField.split(" ");
+        var command = stringArray.shift();
 
         if ( ! $scope.validCommand( command )) {
             return command + ": command not found"
         }
 
-        var returnValue = $scope[command]( stringArray.join() ) || "";
+        returnValue = $scope[command]( stringArray.join() ) || "";
 
         if ( command != "clear" ) Log.addEntry( this.textInputField, returnValue, $scope.currentDir );
 
-        $scope.clearForm( this )
+        $scope.clearForm( this );
     },
 
     $scope.cd = function( navString ) {
@@ -59,7 +59,7 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
                     continue
                 } else {
                     if ( ! FileStructure.descend(navArray[i]) ) {
-                        return "No such file or directory:" + navString
+                        return "No such file or directory: " + navString
                     }
                 }
             }
