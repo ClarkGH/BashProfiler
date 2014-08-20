@@ -28,12 +28,15 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
     },
 
     $scope.parseInput = function(){
+
         var stringArray = this.textInputField.split(" ")
         var command = stringArray.shift()
 
-        if ( $scope.validCommand( command )) {
-            var returnValue = $scope[command]( stringArray.join() ) || "";
+        if ( ! $scope.validCommand( command )) {
+            return command + ": command not found"
         }
+
+        var returnValue = $scope[command]( stringArray.join() ) || "";
 
         if ( command != "clear" ) Log.addEntry( this.textInputField, returnValue, $scope.currentDir );
 
@@ -99,6 +102,7 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
 
         $scope.cd( pathArray.join("/") );
         FileStructure.createDir( newDirectory );
+        FileStructure.goToHome();
         $scope.cd( currentLocation );
     },
 

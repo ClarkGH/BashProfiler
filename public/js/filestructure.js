@@ -73,7 +73,6 @@ function FileStructure () {
             for ( var i = 1; i < navigation.length; i++ ) {
                 currentLocation = currentLocation[navigation[i]];
             }
-            // console.log(currentLocation)
             return currentLocation
         }
     }

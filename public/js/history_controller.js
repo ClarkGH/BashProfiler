@@ -1,7 +1,7 @@
 function HistoryController ( $scope, $sce, Log, FileStructure ){
     $scope.entries = Log.entries(),
 
-    $scope.$watch(Log.entries, function ( newVal, oldVal ) {
+    $scope.$watch( Log.entries, function ( newVal, oldVal ) {
       if ( newVal && newVal != oldVal ) $scope.entries = newVal;
     }),
 
