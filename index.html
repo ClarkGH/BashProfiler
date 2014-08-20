@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="public/css/cursor_blink.css">
   </head>
 
-  <body ng-app="bashProfiler" ng-controller="HistoryController" ng-click="setFocus()">
+  <body ng-app="BashProfiler" ng-controller="HistoryController" ng-click="setFocus()">
     <div id="terminal-container">
       <div id="terminal-history" ng-repeat="entry in entries">
         <div id="pre-cursor" ng-include="'views/pre_cursor.html'" onload="currentDir=entry.currentDir"></div>
