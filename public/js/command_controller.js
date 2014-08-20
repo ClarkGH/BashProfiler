@@ -32,13 +32,11 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
         var stringArray = this.textInputField.split(" ");
         var command = stringArray.shift();
 
-        if ( ! $scope.validCommand( command )) {
-            return command + ": command not found"
-        }
-
-        returnValue = $scope[command]( stringArray.join() ) || "";
+        returnValue = $scope.validCommand( command ) ? $scope[command]( stringArray.join() ) : command + ": command not found"
 
         if ( command != "clear" ) Log.addEntry( this.textInputField, returnValue, $scope.currentDir );
+
+        return returnValue
 
         $scope.clearForm( this );
     },
