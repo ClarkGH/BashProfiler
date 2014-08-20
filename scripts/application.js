@@ -1,4 +1,4 @@
-var bashProfiler = angular.module( 'bashProfiler', [] );
+var bashProfiler = angular.module( 'BashProfiler', [] );
 bashProfiler.controller( 'HistoryController', [ '$scope', '$sce', 'Log', 'FileStructure', HistoryController ] );
 bashProfiler.controller( 'CommandController', [ '$scope', '$sce', 'Log', 'FileStructure', CommandController ] );
 
