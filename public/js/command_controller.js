@@ -73,22 +73,24 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
 
     $scope.ls = function( filePath ) {
         if ( filePath ){
-            var currentLocation = FileStructure.navigation().join('/')
+            var currentLocation = $scope.currentPath.slice(6)
 
             var returnValue = $scope.cd( filePath )
         }
+
         if ( returnValue ) {
             return returnValue
         } else {
-            var currentLocProperties = Object.keys(FileStructure.goToCurrent());
 
-            currentLocProperties = currentLocProperties.length > 0 ? currentLocProperties.join(" ") : ""
+            var LocProperties = Object.keys(FileStructure.goToCurrent());
 
-            if ( filePath ) {
-                $scope.cd()
-                $scope.cd(currentLocation);
-            }
-            return currentLocProperties
+            LocProperties = LocProperties.length > 0 ? LocProperties.join(" ") : ""
+
+            // very hacky solution
+            $scope.cd('../../../../../../../..')
+            $scope.cd(currentLocation)
+
+            return LocProperties
         }
 
     },
@@ -96,7 +98,7 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
     $scope.mkdir = function( filePath ) {
         var pathArray = filePath.split("/")
         var newDirectory = pathArray.pop()
-        var currentLocation = FileStructure.navigation().join('/');
+        var currentLocation = $scope.currentPath.slice(0)
 
         $scope.cd( pathArray.join("/") );
         FileStructure.createDir( newDirectory );
