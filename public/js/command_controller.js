@@ -36,9 +36,9 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
 
         if ( command != "clear" ) Log.addEntry( this.textInputField, returnValue, $scope.currentDir );
 
-        return returnValue
-
         $scope.clearForm( this );
+
+        return returnValue
     },
 
     $scope.cd = function( navString ) {
