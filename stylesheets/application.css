@@ -1,7 +1,11 @@
-#terminal {
+span {
+  white-space:nowrap;
+}
+
+#terminal-container {
   background-color: black;
   border-radius: 5px;
-  width: 50%;
+  width: 50em;
   height: 25em;
   margin: 5em;
   padding: 1em;
@@ -59,5 +63,9 @@
 }
 
 #text-input-area, #pre-cursor {
+  display: inline;
+}
+
+.space {
   display: inline;
 }
