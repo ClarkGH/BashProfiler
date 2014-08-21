@@ -4,25 +4,23 @@ describe("Command Controller", function(){
 
     var ctrl, scope;
 
-    // beforeEach(function() {
-        var LogMock = {
+    var LogMock = {
 
-            terminalHistory: [],
+        terminalHistory: [],
 
-            entries: function(book) {
-                return this.terminalHistory
-            },
+        entries: function(book) {
+            return this.terminalHistory
+        },
 
-            clear: function() {
-                this.terminalHistory = []
-            },
+        clear: function() {
+            this.terminalHistory = []
+        },
 
-            addEntry: function( command, returnValue, currentDir ) {
-                this.terminalHistory.push( {command: command, returnValue: returnValue, currentDir: currentDir} );
-            }
+        addEntry: function( command, returnValue, currentDir ) {
+            this.terminalHistory.push( {command: command, returnValue: returnValue, currentDir: currentDir} );
+        }
 
-       };
-   // });
+   };
 
     beforeEach( inject( function ( $rootScope, $controller ) {
 

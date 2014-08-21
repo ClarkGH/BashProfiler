@@ -1,4 +1,4 @@
-function HistoryController ( $scope, $sce, Log, FileStructure ){
+function HistoryController ( $scope, Log, FileStructure ){
     $scope.entries = Log.entries(),
 
     $scope.$watch( Log.entries, function ( newVal, oldVal ) {

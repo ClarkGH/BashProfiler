@@ -1,14 +1,28 @@
 function CommandController( $scope, $sce, Log, FileStructure ) {
     $scope.currentPath = FileStructure.currentPath(),
     $scope.currentDir = FileStructure.currentDir(),
+    $scope.entries = Log.entries(),
 
     $scope.$watch( FileStructure.currentDir, function( newVal, oldVal ) {
         if ( newVal && newVal != oldVal ) $scope.currentDir = newVal;
-    })
+    }),
+
+    $scope.$watch( Log.entries, function ( newVal, oldVal ) {
+      if ( newVal && newVal != oldVal ) $scope.entries = newVal;
+    }),
 
     $scope.$watch( FileStructure.currentPath, function( newVal, oldVal ) {
         if ( newVal && newVal != oldVal ) $scope.currentPath = newVal;
-    })
+    }),
+
+    $scope.setFocus = function(){
+        if ( event.target.id === "terminal-container" ) {
+            document.getElementById('hidden-field').focus();
+            document.getElementById('cursor').classList.add('blink');
+        } else {
+            document.getElementById('cursor').classList.remove('blink');
+        }
+    },
 
     $scope.toTrusted = function( html ){
         if ( html ){
@@ -23,7 +37,7 @@ function CommandController( $scope, $sce, Log, FileStructure ) {
     },
 
     $scope.clearForm = function( $scope ) {
-        $scope.textInputField = "";
+        $scope.textInputField = null;
         $scope.inputForm.$setPristine();
     },
 
