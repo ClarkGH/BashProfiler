@@ -1,7 +1,8 @@
-function CommandController( $scope, $sce, Log, FileStructure ) {
+function CommandController( $scope, $sce, Log, FileStructure, options ) {
     $scope.currentPath = FileStructure.currentPath(),
     $scope.currentDir = FileStructure.currentDir(),
     $scope.entries = Log.entries(),
+    $scope.Options = options;
 
     $scope.$watch( FileStructure.currentDir, function( newVal, oldVal ) {
         if ( newVal && newVal != oldVal ) $scope.currentDir = newVal;

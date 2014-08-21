@@ -4,11 +4,14 @@
     <title>Bash Profiler</title>
     <link rel="stylesheet" type="text/css" href="vendor/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="public/css/application.css">
+    <link rel="stylesheet" type="text/css" href="public/css/terminal.css">
+    <link rel="stylesheet" type="text/css" href="public/css/bash_profile.css">
     <link rel="stylesheet" type="text/css" href="public/css/cursor_blink.css">
+    <link rel="stylesheet" type="text/css" href="public/css/option_bar.css">
   </head>
 
   <body ng-app="BashProfiler" ng-controller="CommandController" ng-click="setFocus()">
-    <div id="terminal-container">
+    <div id="terminal-container" class="column">
       <div id="terminal-history" ng-repeat="entry in entries">
         <div id="pre-cursor" ng-include="'views/pre_cursor.html'" onload="currentDir=entry.currentDir"></div>
         {{entry.command}}<br>
@@ -23,6 +26,38 @@
 
       </div>
     </div>
+    <div id="bash-profile" class="column" ng-controller="BashProfileController">
+      <div ng-show="Options.currentGitBranch">
+        Git Branch
+      </div>
+      <div ng-show="Options.workingDir">
+        Working Dir
+      </div>
+      <div id="option-bar">
+        <form name="optionForm">
+          <ul>
+            <li>
+              <label for="gitbranch">Show git branch</label>
+              <input type="checkbox" ng-model="gitBranch" ng-change="Options.toggleGitBranch()">
+            </li>
+              <ul ng-show="Options.currentGitBranch">
+                <li>
+                  <label for="uncommitedChanges">Indicate uncommited changes</label>
+                  <input type="checkbox" ng-model="uncommitedChanges" ng-change="Options.toggleUncommitedChanges()">
+                </li>
+                <li>
+                  <label for="statusAgainstOrigin">Show local status vs Git origin</label>
+                  <input type="checkbox" ng-model="statusAgainstOrigin" ng-change="Options.toggleStatusAgainstOrigin()">
+                </li>
+              </ul>
+            <li>
+              <label for="workingDir">Show current directory</label>
+              <input type="checkbox" ng-model="workingDir" ng-change="Options.toggleWorkingDir()">
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
   </body>
 
   <script type="text/javascript" src="vendor/js/jquery-2.1.1.js"></script>
@@ -31,7 +66,7 @@
   <script type="text/javascript" src="public/js/filestructure.js"></script>
   <script type="text/javascript" src="public/js/log.js"></script>
   <script type="text/javascript" src="public/js/command_controller.js"></script>
-  <script type="text/javascript" src="public/js/history_controller.js"></script>
+  <script type="text/javascript" src="public/js/bash_profile_controller.js"></script>
   <script type="text/javascript" src="public/js/application.js"></script>
 
 </html>

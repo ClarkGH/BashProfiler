@@ -1,6 +1,6 @@
 <span id="input" ng-bind-html="toTrusted(textInputField)"></span><span id="cursor">B</span>
 
-<form ng-submit="parseInput()" name="inputForm">
+<form id="terminalForm" ng-submit="parseInput()" name="inputForm">
   <input type="text" id="hidden-field" ng-trim="false" ng-model="textInputField" name="textField">
   <input type="submit">
 </form>

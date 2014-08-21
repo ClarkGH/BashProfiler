@@ -1,0 +1,10 @@
+#option-bar {
+  position: fixed;
+  top: 2em;
+  right: 2em;
+  height: 75%;
+  width: 20%;
+  background-color: lightgrey;
+  color: black;
+  border-radius: 5px
+}

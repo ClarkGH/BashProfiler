@@ -1,8 +1,10 @@
-<span class="current-dir">{{currentDir}}</span>
-<span class="divider">|</span>
-<span class="l-bracket">[</span>
-<span class="git-branch">master</span>
-<span class="local-branch-status">*</span>
-<span class="remote-branch-status">+</span>
-<span class="r-bracket">]</span>
+<span class="current-dir" ng-show="Options.workingDir">{{currentDir}}</span>
+<div id="git" ng-show="Options.currentGitBranch">
+  <span class="divider" ng-show="Options.workingDir">|</span>
+  <span class="l-bracket">[</span>
+  <span class="git-branch">master</span>
+  <span class="local-branch-status" ng-show="Options.uncommitedChanges">*</span>
+  <span class="remote-branch-status" ng-show="Options.statusAgainstOrigin">+</span>
+  <span class="r-bracket">]</span>
+</div>
 <span class="caret">&#10233;</span>
