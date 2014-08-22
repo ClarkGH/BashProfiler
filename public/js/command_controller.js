@@ -1,4 +1,5 @@
 function CommandController( $scope, $sce, Log, FileStructure, options ) {
+
     $scope.currentPath = FileStructure.currentPath(),
     $scope.currentDir = FileStructure.currentDir(),
     $scope.entries = Log.entries(),

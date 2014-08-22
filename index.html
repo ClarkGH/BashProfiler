@@ -36,6 +36,7 @@
       <div id="option-bar">
         <form name="optionForm">
           <ul>
+            <h3>Git Options</h3>
             <li>
               <label for="gitbranch">Show git branch</label>
               <input type="checkbox" ng-model="gitBranch" ng-change="Options.toggleGitBranch()">
@@ -50,10 +51,18 @@
                   <input type="checkbox" ng-model="statusAgainstOrigin" ng-change="Options.toggleStatusAgainstOrigin()">
                 </li>
               </ul>
+            <h3>Other Options</h3>
             <li>
               <label for="workingDir">Show current directory</label>
               <input type="checkbox" ng-model="workingDir" ng-change="Options.toggleWorkingDir()">
             </li>
+            <h3>Appearance</h3>
+            <form>
+              <label for="caret">Choose a character</label>
+              <select ng-init="caret = caret || toTrusted(Options.caret)" ng-model="caret" ng-change="Options.changecaret()">
+                <option ng-repeat="caret in Options.caretOptions" value="{{toTrusted(caret)}}" ng-bind-html="toTrusted(caret)"></option>
+              </select>
+            </form>
           </ul>
         </form>
       </div>

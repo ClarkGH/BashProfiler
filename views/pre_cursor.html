@@ -7,4 +7,4 @@
   <span class="remote-branch-status" ng-show="Options.statusAgainstOrigin">+</span>
   <span class="r-bracket">]</span>
 </div>
-<span class="caret">&#10233;</span>
+<span class="caret" ng-bind-html="toTrusted(Options.caret)"></span>

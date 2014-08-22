@@ -19,6 +19,10 @@ function Options() {
 
         workingDir: false,
 
+        caret: "&#10233;",
+
+        caretOptions: ["&#10233;","$", ">", ":"],
+
         toggleGitBranch: function(){
             this.currentGitBranch = !this.currentGitBranch;
         },
@@ -33,6 +37,10 @@ function Options() {
 
         toggleWorkingDir: function(){
             this.workingDir = !this.workingDir;
+        },
+
+        changecaret: function(){
+            this.caret = event.target.value;
         }
     }
 }
