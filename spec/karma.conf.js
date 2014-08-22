@@ -15,15 +15,15 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'vendor/js/jquery-2.1.1.js',
-        'vendor/js/angular.min.js',
-        'vendor/js/angular-mocks/angular-mocks.js',
-        'public/js/log.js',
-        'public/js/filestructure.js',
-        'public/js/history_controller.js',
-        'public/js/command_controller.js',
-        'public/js/application.js',
-        'spec/controllers/command_controller_spec.js'
+        '../vendor/js/jquery-2.1.1.js',
+        '../vendor/js/angular.min.js',
+        '../vendor/js/angular-mocks/angular-mocks.js',
+        '../public/js/log.js',
+        '../public/js/filestructure.js',
+        '../public/js/history_controller.js',
+        '../public/js/command_controller.js',
+        '../public/js/application.js',
+        'controllers/command_controller_spec.js'
     ],
 
 

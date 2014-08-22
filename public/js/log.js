@@ -1,5 +1,3 @@
-
-
 function Log () {
     var terminalHistory = [];
     var commandHistory = [];

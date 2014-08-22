@@ -1,71 +1,22 @@
-span {
-  white-space:nowrap;
-}
-
-#terminal-container {
-  background-color: black;
-  border-radius: 5px;
-  width: 50em;
-  height: 25em;
-  margin: 5em;
-  padding: 1em;
+body {
   font-size: 0.8em;
   font-family: "Monaco";
-  font-weight: lighter;
-  color: white;
 }
 
-#terminal-history {
-  width: 100%;
+ul {
+  list-style: none;
 }
 
-#terminal-input-line {
-  width: 100%;
-  margin: 0 auto;
+.column {
+  display: inline-block;
+  float: left;
+  width: 35%;
+  height: 25em;
+  margin: 2em 1em;
+  padding: 0.5em;
+  border-radius: 5px;
 }
 
-#terminal:focus {
-  border: none;
-  outline: 0;
-}
-
-#terminal-return {
-  margin-top: 0.5em;
-}
-
-#cursor {
-  background-color: white;
-  color: white;
-  opacity: 0.7;
-}
-
-.divider {
-  color: red;
-}
-
-.git-branch {
-  color: aqua;
-}
-
-.local-branch-status {
-  color: hotpink;
-  vertical-align: sub;
-}
-
-.remote-branch-status {
-  color: crimson;
-  vertical-align: baseline;
-}
-
-.caret {
-  font-size: 0.8em;
-  vertical-align: middle;
-}
-
-#text-input-area, #pre-cursor {
-  display: inline;
-}
-
-.space {
-  display: inline;
+.function-name {
+  color: #A6E22E;
 }
