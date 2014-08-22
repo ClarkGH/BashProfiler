@@ -58,7 +58,7 @@
             </li>
             <h3>Appearance</h3>
             <form>
-              <label for="caret">Choose a character</label>
+              <label for="caret">Select your caret</label>
               <select ng-init="caret = caret || toTrusted(Options.caret)" ng-model="caret" ng-change="Options.changecaret()">
                 <option ng-repeat="caret in Options.caretOptions" value="{{toTrusted(caret)}}" ng-bind-html="toTrusted(caret)"></option>
               </select>
