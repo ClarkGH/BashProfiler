@@ -3,6 +3,10 @@ body {
   font-family: "Monaco";
 }
 
+ul {
+  list-style: none;
+}
+
 .column {
   display: inline-block;
   float: left;
